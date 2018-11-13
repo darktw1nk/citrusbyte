@@ -8,7 +8,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
-public class ArrayFlattenerTest {
+public class IntegerArrayFlattenerTest {
 
     private IntegerArrayFlattener arrayFlattener;
     private Integer[] expectedResult;
@@ -20,21 +20,21 @@ public class ArrayFlattenerTest {
     }
 
     @Test
-    public void integerNullTest(){
+    public void nullTest(){
         Integer[] result = arrayFlattener.flattenArrayOfIntegers(null);
         assertNotNull(result);
         assertThat(result,arrayWithSize(0));
     }
 
     @Test
-    public void integerEmptyArrayTest(){
+    public void emptyArrayTest(){
         Integer[] result = arrayFlattener.flattenArrayOfIntegers(new Object[]{});
         assertNotNull(result);
         assertThat(result,arrayWithSize(0));
     }
 
     @Test
-    public void integerSimpleArrayTest(){
+    public void simpleArrayTest(){
         Object[] array = new Object[]{1,2,3,4,5,6};
         Integer[] result = arrayFlattener.flattenArrayOfIntegers(array);
 
@@ -43,7 +43,7 @@ public class ArrayFlattenerTest {
     }
 
     @Test
-    public void integerNestedArrayTest(){
+    public void nestedArrayTest(){
         Object[] array = new Object[]{1,new Object[]{2,3},4,5,6};
         Integer[] result = arrayFlattener.flattenArrayOfIntegers(array);
 
@@ -52,7 +52,7 @@ public class ArrayFlattenerTest {
     }
 
     @Test
-    public void integerNestedIntegerArrayTest(){
+    public void nestedIntegerArrayTest(){
         Object[] array = new Object[]{1,new Integer[]{2,3},4,5,6};
         Integer[] result = arrayFlattener.flattenArrayOfIntegers(array);
 
@@ -61,7 +61,7 @@ public class ArrayFlattenerTest {
     }
 
     @Test
-    public void integerMultiLevelNestedArrayTest(){
+    public void multiLevelNestedArrayTest(){
         Object[] array = new Object[]{1,new Object[]{2,new Object[]{3,4,new Object[]{5}}},6};
         Integer[] result = arrayFlattener.flattenArrayOfIntegers(array);
 
@@ -70,7 +70,7 @@ public class ArrayFlattenerTest {
     }
 
     @Test(expected = ArrayStoreException.class)
-    public void integerContainsOtherTypeTest(){
+    public void containsOtherTypeTest(){
         Object[] array = new Object[]{1,2,new Object(),4,5,6};
         Integer[] result = arrayFlattener.flattenArrayOfIntegers(array);
 
